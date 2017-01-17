@@ -1,15 +1,12 @@
 class Task {
-  done: boolean;
-  description: string;
-  priority: string;
+  done: boolean = false;
 
-  constructor(descriptionParameter: string, priorityParameter: string) {
-    this.done = false;
-    this.description = descriptionParameter;
-    this.priority = priorityParameter;
-  }
+  constructor(public description: string, public priority: string) {}
 }
 
 var tasks: Task[] = [];
 tasks.push(new Task('Do the dishes Kevin', 'High'));
+tasks.push(new Task('Pick up dog poop', 'Low'));
+tasks.push(new Task('Take trash out', 'High'));
+tasks.push(new Task('Game on h1z1', 'Highest'));
 console.log(tasks)
