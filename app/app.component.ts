@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
     <h1>To Do List for {{month}}/{{day}}/{{year}}</h1>
     <h3>{{list}}</h3>
     <ul>
-       <li *ngFor="let currentTask of tasks">{{currentTask.description}}</li>
+       <li *ngFor="let currentTask of tasks">{{currentTask.description}}  <button class="btn btn-warning" (click)="editTask()">Edit!</button><br><br></li>
     </ul>
   `
 })
@@ -23,6 +23,10 @@ export class AppComponent {
     new Task('mow the lawn'),
     new Task('clean house')
   ];
+
+  editTask() {
+    alert("You just requested to edit a Task!");
+  }
 }
 
 export class Task {
