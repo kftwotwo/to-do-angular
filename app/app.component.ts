@@ -5,11 +5,11 @@ import { Component } from '@angular/core';
   template: `
     <h1>To Do List for {{month}}/{{day}}/{{year}}</h1>
     <h3>{{list}}</h3>
-    <button (click)="newTask()">Add new Task</button>
+    <button class="btn btn-success" (click)="newTask()">Add new Task</button>
     <div *ngIf="newTaskShow">
       <h6>Name</h6>
       <input [(ngModel)]="selectedTask.description" >
-      <button (click)="closeNewTask()">Save</button>
+      <button class="btn btn-primary" (click)="closeNewTask()">Save</button>
     </div>
     <ul>
        <li [class]="priorityColor(currentTask)" (click)="isDone(currentTask)" *ngFor="let currentTask of tasks">{{currentTask.description}}  <button class="btn btn-warning" (click)="editTask(currentTask)">Edit!</button><br><br></li>
