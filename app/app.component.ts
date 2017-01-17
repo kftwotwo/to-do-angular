@@ -5,6 +5,12 @@ import { Component } from '@angular/core';
   template: `
     <h1>To Do List for {{month}}/{{day}}/{{year}}</h1>
     <h3>{{list}}</h3>
+    <button (click)="newTask()">Add new Task</button>
+    <div *ngIf="newTaskShow">
+      <h6>Name</h6>
+      <input [(ngModel)]="selectedTask.description" >
+      <button (click)="closeNewTask()">Save</button>
+    </div>
     <ul>
        <li [class]="priorityColor(currentTask)" (click)="isDone(currentTask)" *ngFor="let currentTask of tasks">{{currentTask.description}}  <button class="btn btn-warning" (click)="editTask(currentTask)">Edit!</button><br><br></li>
     </ul>
@@ -17,9 +23,9 @@ import { Component } from '@angular/core';
       <label>Enter Task Description:</label>
       <input [(ngModel)]="selectedTask.description">
       <label>Enter Task Priority (1-3):</label><br>
-      <input type="radio" [(ngModel)]="selectedTask.priority" [value]="1">1 (Low Priority)<br>
+      <input type="radio" [(ngModel)]="selectedTask.priority" [value]="1">1 (High Priority)<br>
       <input type="radio" [(ngModel)]="selectedTask.priority" [value]="2">2 (Medium Priority)<br>
-      <input type="radio" [(ngModel)]="selectedTask.priority" [value]="3">3 (High Priority)
+      <input type="radio" [(ngModel)]="selectedTask.priority" [value]="3">3 (low Priority)
       <button (click)="finishedEdit()">Done</button>
     </div>
   `
@@ -32,8 +38,8 @@ export class AppComponent {
   day: number = this.currentTime.getDate();
   year: number = this.currentTime.getFullYear();
   tasks: Task[] = [
-    new Task('add readme content', 5),
-    new Task('wash the car', 6),
+    new Task('add readme content', 1),
+    new Task('wash the car', 3),
     new Task('mow the lawn', 2),
     new Task('clean house', 1)
   ];
@@ -45,6 +51,17 @@ export class AppComponent {
     this.selectedTask = clickedTask;
   }
 
+  newTaskShow: boolean = false;
+
+  newTask() {
+    this.tasks.push(new Task('Enter here'));
+    this.newTaskShow = true;
+    this.selectedTask = this.tasks[this.tasks.length-1];
+  }
+  closeNewTask(){
+    this.newTaskShow = false;
+  }
+
   isDone(clickedTask: Task) {
     if(clickedTask.done === true) {
       alert("This task is done!");
@@ -53,8 +70,9 @@ export class AppComponent {
     }
   }
 
+
   priorityColor(currentTask){
-  if (currentTask.priority < 2){
+  if (currentTask.priority === 1){
     return "bg-danger";
     } else if (currentTask.priority === 2) {
     return  "bg-warning";
