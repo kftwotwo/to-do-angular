@@ -1,12 +1,12 @@
-# Angular-Template
+# To do with angular
 
- This is a template for angular 2, 1/16/2017
+ This is a template for angular 2, 1/17/2017
 
  By [Kevin Finley](http://www.kfinley.com)
 
 ## Description
 
-This is a template for angular 2 for epicodus!
+Able to add tasks for a to-do list.
 
 ## Setup/Installation Requirements
 
